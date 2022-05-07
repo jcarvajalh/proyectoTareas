@@ -1,46 +1,46 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import CrearTarea from ' /src/CrearTarea.component';
-import EditarTarea from ' /src/EditarTarea.component';
-import ListaTareas from ' /src/ListaTareas.component';
+import CrearTarea from './CrearTarea.component.js';
+import EditarTarea from './EditarTarea.component.js';
+import ListaTareas from './ListaTareas.component.js';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="container">
-          <h2>Lista de Tareas USC</h2>
-
-          <nav className="navbar navbar-exand-lg navbar-light bg-light">
-            <link to="/" className="navbar-brand">
-              Lista de tareas USC
-            </link>
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <Link to="/" className="navbar-brand">
+              Lista de Tareas USC
+            </Link>
             <div className="collapse navbar-collapse">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
-                  <link to="/" className="nav-link">
+                  <Link to="/" className="nav-link">
                     Lista de tareas
-                  </link>
+                  </Link>
                 </li>
                 <li className="navbar-item">
-                  <link to="/" className="nav-link">
+                  <Link to="/create" className="nav-link">
                     Crear lista de tareas
-                  </link>
+                  </Link>
                 </li>
                 <li className="navbar-item">
-                  <link to="/" className="nav-link">
-                    Editar Lista de tareas
-                  </link>
+                  <Link to="/edit/:id" className="nav-link">
+                    Editar lista de tareas
+                  </Link>
                 </li>
               </ul>
             </div>
           </nav>
 
-          <Route path="/" exact component={ListaTareas} />
-          <Route path="/edit/:id" component={EditarTarea} />
-          <Route path="/create" component={CrearTarea} />
+          <Routes>
+            <Route path="/" exact element={<ListaTareas />} />
+            <Route path="/edit/:id" element={<EditarTarea />} />
+            <Route path="/create" element={<CrearTarea />} />
+          </Routes>
         </div>
       </Router>
     );
